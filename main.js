@@ -3,6 +3,8 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+const photon = require('photon');
+
 
 const path = require('path')
 const url = require('url')
@@ -11,9 +13,10 @@ const url = require('url')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({ width: 500, height: 700 })
+
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -21,6 +24,11 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
+
+  mainWindow = new BrowserWindow({ show: false })
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  })
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()

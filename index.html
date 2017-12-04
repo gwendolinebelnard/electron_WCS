@@ -1,19 +1,123 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
 
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./dist/css/photon.css">
+  <link rel="stylesheet" type="text/css" href="./dist/css/style.css">
+  <title>First App Electron</title>
+</head>
+
+<header class="toolbar toolbar-header">
+  <h1 class="title">Les Wilders Parisiens</h1>
+
+  <div class="toolbar-actions">
+    <div class="btn-group">
+      <button class="btn btn-default">
+        <span class="icon icon-home"></span>
+      </button>
+      <button class="btn btn-default">
+        <span class="icon icon-folder"></span>
+      </button>
+      <button class="btn btn-default active">
+        <span class="icon icon-cloud"></span>
+      </button>
+      <button class="btn btn-default">
+        <span class="icon icon-popup"></span>
+      </button>
+      <button class="btn btn-default">
+        <span class="icon icon-shuffle"></span>
+      </button>
+    </div>
+
+    <button class="btn btn-default">
+      <span class="icon icon-home icon-text"></span>
+      Filters
+    </button>
+
+    <button class="btn btn-default btn-dropdown pull-right">
+      <span class="icon icon-megaphone"></span>
+    </button>
+  </div>
+</header>
+
+<div id="horloge"></div>
+<script type="text/javascript">
+  var date = new Date();
+  var heure = date.getHours();
+  var minute = date.getMinutes();
+  var seconde = date.getSeconds();
+  var f = function () {
+    if (seconde < 59)
+      seconde++;
+    else { minute++; seconde = 00; }
+    if (minute > 59) { heure++; minute = 0; }
+    document.getElementById("horloge").textContent = heure + ":" + minute;
+    setTimeout(ff, 1000);
+  }
+  setTimeout(f, 1000);
+</script>
+
+<div class="window-content">
+  <div class="padded-more pull-center">
+    <img src="./dist/img/welcome.png" width="40%" height="" class="img-responsive" />
+  </div>
+</div>
+
+<ul class="list-group">
+  <li class="list-group-header">
+    <input class="form-control" type="text" placeholder="Search for someone">
+  </li>
+  <li class="list-group-item">
+    <img class="img-circle media-object pull-left" src="./dist/img/anneLaure.svg" width="32" height="32">
+    <div class="media-body">
+      <strong>Anne-Laure</strong>
+      <p>Pour les commandes de sacs à main, c'est par ici !</p>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <img class="img-circle media-object pull-left" src="./dist/img/manu.svg" width="32" height="32">
+    <div class="media-body">
+      <strong>Manu</strong>
+      <p>Non, je ne suis pas QUE graphisteuuuuu !!!!</p>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <img class="img-circle media-object pull-left" src="./dist/img/gwen.svg" width="32" height="32">
+    <div class="media-body">
+      <strong>Gwen</strong>
+      <p>Trop bien Electron ! Les avatars vous plaisent ? :-)</p>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <img class="img-circle media-object pull-left" src="./dist/img/christophe.svg" width="32" height="32">
+    <div class="media-body">
+      <strong>Christophe</strong>
+      <p>Ne cherchez plus...Plesiosaure le dinosaure, c'est moi ;-)</p>
+    </div>
+  </li>
+</ul>
+
+<footer class="toolbar toolbar-footer">
+  <div class="toolbar-actions">
+    <button class="btn btn-default">
+      Cancel
+    </button>
+
+    <button class="btn btn-primary pull-right">
+      Save
+    </button>
+  </div>
+</footer>
+
+<script>
+  // You can also require other files to run in this process
+  require('./renderer.js')
+  require('devtron').install()
+</script>
+<script src="./dist/template-app/js/menu.js"></script>
+<script src="./dist/template-app/app.js"></script>
+
+</body>
+
 </html>

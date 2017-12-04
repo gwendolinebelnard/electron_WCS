@@ -1,0 +1,12 @@
+div .window-content {
+    margin: 0;
+    padding: 0;
+}
+
+#horloge {
+    font-size: 40px;
+    font-weight: bold;
+    color: #024959;
+    text-align: center;
+    display: block;
+}
